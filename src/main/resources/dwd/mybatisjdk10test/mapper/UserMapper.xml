@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dwd.mybatisjdk10test.mapper.UserMapper">
+
+    <select id="getAllUsers" resultType="User">
+        SELECT id, name FROM users
+    </select>
+
+    <insert id="saveAll" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO users (name) VALUES
+        <foreach item="user" separator="," collection="list">
+            (#{user.name})
+        </foreach>
+    </insert>
+
+</mapper>
